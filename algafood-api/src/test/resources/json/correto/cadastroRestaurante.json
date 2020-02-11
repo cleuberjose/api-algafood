@@ -1,0 +1,7 @@
+ {
+        "taxaFrete": 5.66,
+        "nome":"Restaurante 3",
+        "cozinha": {
+            "id": 1
+        }
+    }
