@@ -1,4 +1,6 @@
 SET timezone='UTC';
+delete from pedido_item;
+delete from pedido;
 delete from produto;
 delete from restaurante_forma_pagamento;
 delete from restaurante;
@@ -12,8 +14,6 @@ delete from grupo_permissao;
 delete from permissao;
 delete from grupo;
 delete from forma_pagamento;
-delete from pedido;
-delete from pedido_item;
 
 ALTER SEQUENCE restaurante_id_restaurante_seq RESTART WITH 1;
 ALTER SEQUENCE cozinha_id_cozinha_seq RESTART WITH 1;
@@ -96,3 +96,44 @@ INSERT INTO public.grupo_permissao( id_grupo, id_permissao) VALUES (1, 1),(1, 2)
 	
 insert into restaurante_usuario (id_restaurante, id_usuario) values  (1, 1),(1, 2),(1, 3),(1,4),(2, 1),
 	(2, 2),(2, 3),(2,4),(3, 1),(3, 2),(3, 3),(3,4),(4, 1),(4, 2);
+	
+INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (1, 1, 1, 'CRIADO',30.00,2.90, 32.90, null, now(), now(),null,'Bairro'
+	,'11111-111','Complemento', 'Logradouro','123','17fa0681-619a-4864-a82c-d11257f8480b',1);
+		
+
+INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (2, 2, 2, 'CRIADO',60.00,
+            2.90, 62.90, null, now(), now(),null,'Bairro2',
+            '11111-111','Complemento2', 'Logradouro2','123','de0fcbf6-4fc5-41e0-af8e-0c774dbc2e21',2);
+            
+
+INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (1, 1, 3, 10.00,
+            30.00, 'Teste1');
+
+INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (2, 1, 3, 10.00, 30.00, 'Teste1');
+
+INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (2, 2, 2, 10.00,20.00, 'Teste2');
+
+INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (2, 3, 1, 10.00, 10.00, 'Teste3');
+

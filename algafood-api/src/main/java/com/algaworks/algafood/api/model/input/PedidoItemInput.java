@@ -1,10 +1,7 @@
 package com.algaworks.algafood.api.model.input;
 
-import java.math.BigDecimal;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,24 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PedidoItemInput {
-	
-	@Valid
+		
 	@NotNull
-	private PedidoIdInput pedido;
-	
-	@Valid
-	@NotNull
-	private ProdutoIdInput produto;
+	private Integer produtoId;
 	
 	@NotNull
+	@PositiveOrZero
 	private Integer quantidade;
 	
-	@NotNull
-	private BigDecimal precoUnitario;
-	
-	@NotNull
-	private BigDecimal precoTotal;
-	
-	@NotBlank
 	private String observacao;
 }

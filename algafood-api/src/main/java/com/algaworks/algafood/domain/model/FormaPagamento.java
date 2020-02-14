@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 @Table(name="forma_pagamento")
 public class FormaPagamento {	
 	
-	@NotNull(groups = FormaPagamentoId.class)
+//	@NotNull(groups = FormaPagamentoId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

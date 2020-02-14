@@ -8,9 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PedidoItemModel {
-	private Integer id;
-	private PedidoModel pedido;
-	private ProdutoModel produto;
+	private Integer produtoId;
+	private String produtoNome;
 	private Integer quantidade;
 	private BigDecimal precoUnitario;
 	private BigDecimal precoTotal;

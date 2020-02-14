@@ -17,6 +17,7 @@ CREATE TABLE public.pedido
   endereco_complemento character varying(50),
   endereco_logradouro character varying(80)  NOT NULL,
   endereco_numero character varying(10)  NOT NULL,
+  id_cidade integer not null,
   CONSTRAINT pk_pedido PRIMARY KEY (id_pedido),
   CONSTRAINT fk_pedido_forma_pagamento FOREIGN KEY (id_forma_pagamento)
       REFERENCES public.forma_pagamento (id_forma_pagamento) MATCH SIMPLE
@@ -26,6 +27,9 @@ CREATE TABLE public.pedido
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fk_pedido_usuario FOREIGN KEY (id_usuario)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_pedido_cidade FOREIGN KEY (id_cidade)
+      REFERENCES public.cidade (id_cidade) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 

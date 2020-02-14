@@ -1,16 +1,10 @@
 package com.algaworks.algafood.api.model.input;
 
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.util.List;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.algaworks.algafood.domain.model.PedidoStatus;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +13,11 @@ import lombok.Setter;
 @Setter
 public class PedidoInput {
 	
+	private UsuarioIdInput usuario;
+	
 	@Valid
 	@NotNull
-	private UsuarioIdInput usuario;
+	private EnderecoInput endereco;
 	
 	@Valid
 	@NotNull
@@ -31,25 +27,10 @@ public class PedidoInput {
 	@NotNull
 	private FormaPagamentoIdInput formaPagamento;
 	
+	@Valid
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	private PedidoStatus pedidoStatus;
+	@Size(min=1)
+	private List<PedidoItemInput> pedidoItens;
 	
-	@NotNull
-	private BigDecimal subtotal;
 	
-	@NotNull
-	private BigDecimal taxaFrete;
-	
-	@NotNull
-	private BigDecimal valorTotal;
-	
-	@CreationTimestamp
-	private OffsetDateTime dataCriacao;
-	
-	private OffsetDateTime dataConfirmacao;
-	
-	private OffsetDateTime dataCancelamento;
-	
-	private OffsetDateTime dataEntrega;
 }

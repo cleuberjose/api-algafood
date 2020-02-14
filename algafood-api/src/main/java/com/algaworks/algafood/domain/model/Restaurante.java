@@ -10,7 +10,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -116,6 +115,13 @@ public class Restaurante {
 	}
 	public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormaPagamentos().remove(formaPagamento);		
+	}
+	public boolean aceitaFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormaPagamentos().contains(formaPagamento);
+	}
+	
+	public boolean naoAceitaFormaPagamento(FormaPagamento formaPagamento) {
+		return !aceitaFormaPagamento(formaPagamento);
 	}
 	public void abrir() {
 		setAberto(true);		
