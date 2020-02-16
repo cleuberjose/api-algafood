@@ -10,9 +10,12 @@ import com.algaworks.algafood.domain.model.Restaurante;
 
 public interface ProdutoRepository extends CustomJpaRepository<Produto, Integer> {
 
-	List<Produto> findByRestaurante(Restaurante restaurante);
+	List<Produto> findTodosByRestaurante(Restaurante restaurante);
 
 	@Query("from Produto p WHERE p.restaurante.id=:idRestaurante AND p.id=:idProduto ")
 	Optional<Produto> findById(Integer idRestaurante, Integer idProduto);
+	
+	@Query("from Produto p WHERE p.restaurante=:restaurante AND p.ativo=true")
+	List<Produto> findAtivosByRestaurante(Restaurante restaurante);
 
 }

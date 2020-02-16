@@ -3,8 +3,8 @@ delete from pedido_item;
 delete from pedido;
 delete from produto;
 delete from restaurante_forma_pagamento;
-delete from restaurante;
 delete from restaurante_usuario;
+delete from restaurante;
 delete from usuario_grupo;
 delete from usuario;
 delete from cozinha;
@@ -78,7 +78,7 @@ INSERT INTO public.forma_pagamento(descricao) VALUES ('Cartão de Crédito'), ('
 
 insert into restaurante_forma_pagamento (id_restaurante, id_forma_pagamento) values(1,1), (1,2),(1,3),(2,1),(2,3), (2,4), (3,1),(3,2),(3,4), (4,1),(4,2),(4,3), (4,4);
 
-INSERT INTO public.produto(ativo, descricao, nome, preco, id_restaurante) VALUES (true, 'Prato 1', 'Prato 1',10.90, 1),(true, 'Prato 2', 'Prato 2',5.90, 1),(true, 'Prato 3', 'Prato 3',3.90, 1),(true, 'Prato 4', 'Prato 4',5.90, 2),(true, 'Prato 5', 'Prato 5',5.50, 3),(true, 'Prato 6', 'Prato 6',5.60, 4);
+INSERT INTO public.produto(ativo, descricao, nome, preco, id_restaurante) VALUES (true, 'Prato 1', 'Prato 1',10.90, 1),(true, 'Prato 2', 'Prato 2',5.90, 1),(false, 'Prato 3', 'Prato 3',3.90, 1),(true, 'Prato 4', 'Prato 4',5.90, 2),(true, 'Prato 5', 'Prato 5',5.50, 3),(false, 'Prato 6', 'Prato 6',5.60, 4);
 
 INSERT INTO public.usuario(data_cadastro, email, nome, senha) VALUES (now(), 'teste1@algafood.com', 'Teste1', '123');
 INSERT INTO public.usuario(data_cadastro, email, nome, senha) VALUES (now(), 'teste2@algafood.com', 'Teste2', '123');
@@ -113,7 +113,48 @@ INSERT INTO public.pedido(
             endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
     VALUES (2, 2, 2, 'CRIADO',60.00,
             2.90, 62.90, null, now(), now(),null,'Bairro2',
-            '11111-111','Complemento2', 'Logradouro2','123','de0fcbf6-4fc5-41e0-af8e-0c774dbc2e21',2);
+            '11111-111','Complemento2', 'Logradouro2','123',
+            'de0fcbf6-4fc5-41e0-af8e-0c774dbc2e21',2);
+            
+INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (3, 3, 1, 'CRIADO',79.00,
+            2.90, 81.90, null, now(), now(),null,'Bairro3',
+            '11111-111','Complemento3', 'Logradouro3','123',
+            '6dfea6d1-7c71-4fb3-8a41-8afca3bd648d',1);
+            
+INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (3, 3, 1, 'CRIADO',79.00,
+            2.90, 81.90, null, now(), now(),null,'Bairro4',
+            '11111-111','Complemento4', 'Logradouro4','124',
+            'e72cca0a-fed9-426e-a425-3de80c74432e',3);
+            
+ INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (3, 1, 1, 'CRIADO',79.00,
+            2.90, 81.90, null, now(), now(),null,'Bairro5',
+            '11111-111','Complemento5', 'Logradouro5','124',
+            '63f2c23a-b120-441e-9d1f-5b127aa49d94',3);
+            
+ INSERT INTO public.pedido(
+            id_usuario, id_restaurante, id_forma_pagamento, pedido_status, 
+            subtotal, taxa_frete, valor_total, data_entrega, data_confirmacao, 
+            data_criacao, data_cancelamento, endereco_bairro, endereco_cep, 
+            endereco_complemento, endereco_logradouro, endereco_numero,codigo, id_cidade)
+    VALUES (3, 1, 1, 'CRIADO',79.00,
+            2.90, 81.90, null, now(), now(),null,'Bairro6',
+            '11111-111','Complemento6', 'Logradouro6','126',
+            'c65db5a0-423f-4048-9d56-2b1745b7bdae',3);
             
 
 INSERT INTO public.pedido_item(
@@ -136,4 +177,24 @@ INSERT INTO public.pedido_item(
             id_pedido, id_produto, quantidade, preco_unitario, 
             preco_total, observacao)
     VALUES (2, 3, 1, 10.00, 10.00, 'Teste3');
+    
+ INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (3, 3, 1, 10.00, 10.00, 'Teste4');
+    
+  INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (4, 3, 1, 10.00, 10.00, 'Teste4');
+    
+INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (5, 3, 1, 10.00, 10.00, 'Teste5');
+    
+ INSERT INTO public.pedido_item(
+            id_pedido, id_produto, quantidade, preco_unitario, 
+            preco_total, observacao)
+    VALUES (6, 3, 1, 10.00, 10.00, 'Teste6');
 
